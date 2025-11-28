@@ -1148,32 +1148,40 @@ st.write("---")
 
 # ------------------------------ CONTACT SECTION ------------------------------
 
+import requests
+
+GSHEET_URL = "https://script.google.com/macros/s/AKfycbyPBvUSulGui8c2FtLjpYOo-LvsW3FMZTKlXJQQtV17AfuRnZ8M_JILOXylSCogeuwY/exec"
+
 st.markdown("<h2 id='contact'>Contact</h2>", unsafe_allow_html=True)
 
 col1, col2 = st.columns([1.4, 1])
 
-# Contact Form
 with col1:
-    st.subheader(TEXT[st.session_state.lang]["contact_form"])
-
+    st.subheader("Send me a Message")
     name = st.text_input("Your Name")
     email_in = st.text_input("Your Email")
     subject = st.text_input("Subject")
     message = st.text_area("Message")
 
     if st.button("Send Message"):
-        if name and email_in and message:
-            st.success("Message sent! (Back-end email service can be added later.)")
+        if not name or not email_in or not message:
+            st.error("Please fill in all required fields.")
         else:
-            st.error("Please fill in all fields.")
+            payload = {
+                "name": name,
+                "email": email_in,
+                "subject": subject,
+                "message": message
+            }
+            response = requests.post(GSHEET_URL, json=payload)
+            if response.status_code == 200:
+                st.success("✅ Message sent! Thank you.")
+            else:
+                st.error("❌ Failed to send message — try again later.")
 
-# Contact Info beside form
 with col2:
     st.subheader("My Contact Details")
-    st.write(f"📧 **Email:** {EMAIL}")
-    st.write(f"📞 **Phone:** {PHONE}")
+    st.write(f"📧 Email: {EMAIL}")
+    st.write(f"📞 Phone: {PHONE}")
     st.write(f"[🔗 LinkedIn]({LINKEDIN})")
     st.write(f"[💻 GitHub]({GITHUB})")
-
-st.write("---")
-st.write(f"© {datetime.date.today().year} — Built by **Shubham Badlani**")
