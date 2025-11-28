@@ -4,10 +4,233 @@ from pathlib import Path
 import datetime
 from base64 import b64encode
 
+# st.markdown("""
+# <style>
+
+#  /* Force LIGHT MODE text everywhere */
+# html, body, [class*="css"]  {
+#     color: #1f2937 !important;   /* dark gray text */
+# }
+
+# /* Fix page background */
+# .stApp {
+#     background: linear-gradient(120deg, #dbeafe, #eff6ff) !important;
+# }
+
+# /* Sidebar stays clean */
+# section[data-testid="stSidebar"] {
+#     background-color: #111827 !important;
+#     color: white !important;
+# }
+
+# /* Make markdown headings dark */
+# h1, h2, h3, h4, h5, h6, p, span, div {
+#     color: #1f2937 !important;
+# }
+
+# /* Better visibility for skill tags */
+# .skill-tag {
+#     padding: 8px 14px;
+#     margin: 6px;
+#     background: #ffffff;
+#     border-radius: 12px;
+#     border: 1px solid #e2e8f0;
+#     display: inline-block;
+#     font-size: 15px;
+#     font-weight: 500;
+#     color: #1f2937 !important;
+#     box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+# }
+
+# </style>
+# """, unsafe_allow_html=True)
+# st.markdown("""
+# <style>
+
+#  /* FIX SIDEBAR TEXT COLOR */
+# section[data-testid="stSidebar"] * {
+#     color: #ffffff !important;    /* make all sidebar text white */
+# }
+
+# /* Make sidebar links bright and readable */
+# section[data-testid="stSidebar"] a {
+#     color: #93c5fd !important;    /* light sky blue */
+#     font-weight: 500;
+# }
+
+# section[data-testid="stSidebar"] h3,
+# section[data-testid="stSidebar"] h2,
+# section[data-testid="stSidebar"] h1 {
+#     color: #ffffff !important;
+# }
+
+# </style>
+# """, unsafe_allow_html=True)
+# st.markdown("""
+# <style>
+
+#     /* ---------- BUTTON FIX ---------- */
+#     .stButton>button {
+#         background-color: #2563eb !important; /* bright blue */
+#         color: white !important;
+#         border-radius: 8px !important;
+#         padding: 10px 18px !important;
+#         font-weight: 600 !important;
+#         border: none !important;
+#     }
+
+#     .stButton>button:hover {
+#         background-color: #1d4ed8 !important; /* darker blue */
+#         color: white !important;
+#     }
+
+#     /* ---------- CONTACT FORM INPUT FIX ---------- */
+#     input, textarea, .stTextInput>div>div>input, .stTextArea textarea {
+#         background-color: #ffffff !important;
+#         color: #111827 !important;
+#         border: 1px solid #d1d5db !important;
+#         border-radius: 8px !important;
+#     }
+
+#     input:focus, textarea:focus {
+#         border: 1px solid #2563eb !important;
+#         box-shadow: 0 0 0 2px #93c5fd !important;
+#     }
+
+#     /* ---------- FIX LABELS ---------- */
+#     label, .css-1p8f4xj, .css-17eq0hr {
+#         color: #111827 !important;
+#         font-weight: 500 !important;
+#     }
+
+#     /* ---------- RESUME BUTTON (TOP) ---------- */
+#     .resume-button>button {
+#         background-color: #6B7280 !important;
+#         color: white !important;
+#         padding: 8px 16px !important;
+#         border-radius: 6px !important;
+#     }
+
+#     .resume-button>button:hover {
+#         background-color: #6B7280 !important;
+#     }
+
+# </style>
+# """, unsafe_allow_html=True)
+
+
 # -------------------------------- CONFIG --------------------------------
 PAGE_TITLE = "Shubham Badlani — Portfolio"
 PAGE_ICON = "🛠️"
+# ---------------------- CLEAN + FIXED CSS ----------------------
+st.markdown("""
+<style>
+
+    /* GLOBAL download button fix */
+    .stDownloadButton button {
+        background-color: #2563EB !important;  /* Blue */
+        color: white !important;
+        border-radius: 8px !important;
+        padding: 10px 16px !important;
+        font-size: 15px !important;
+        border: none !important;
+        font-weight: 600 !important;
+    }
+
+    .stDownloadButton button:hover {
+        background-color: #1D4ED8 !important;  /* Darker Blue */
+    }
+
+    /* SIDEBAR button override */
+    section[data-testid="stSidebar"] .stDownloadButton button {
+        background-color: #0A66C2 !important;   /* LinkedIn Blue inside sidebar */
+        color: white !important;
+        border-radius: 8px !important;
+    }
+
+    section[data-testid="stSidebar"] .stDownloadButton button:hover {
+        background-color: #084a8a !important;
+    }
+
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+
+    /* ---------- GLOBAL BACKGROUND ---------- */
+    .stApp {
+        background: linear-gradient(120deg, #dbeafe, #eff6ff) !important;
+    }
+
+    /* ---------- GLOBAL TEXT ---------- */
+    html, body, [class*="css"] {
+        color: #1f2937 !important;   /* Slate-800 */
+    }
+
+    h1, h2, h3, h4, h5, h6, p, span, div {
+        color: #1f2937 !important;
+    }
+
+    /* ---------- SIDEBAR STYLING ---------- */
+    section[data-testid="stSidebar"] {
+        background-color: #111827 !important;  /* dark navy */
+    }
+    section[data-testid="stSidebar"] * {
+        color: #ffffff !important;
+    }
+    section[data-testid="stSidebar"] a {
+        color: #93c5fd !important;   /* light sky blue */
+        font-weight: 500 !important;
+    }
+
+    /* ---------- STREAMLIT BUTTONS ---------- */
+    .stButton>button {
+        background-color: #2563EB !important;   /* blue */
+        color: white !important;
+        border-radius: 10px !important;
+        padding: 10px 20px !important;
+        font-size: 16px !important;
+        font-weight: 600 !important;
+        border: none !important;
+    }
+    .stButton>button:hover {
+        background-color: #1D4ED8 !important;
+    }
+
+    /* ---------- CONTACT FORM ---------- */
+    input, textarea, .stTextInput>div>div>input, .stTextArea textarea {
+        background-color: white !important;
+        color: #111827 !important;
+        border: 1px solid #d1d5db !important;
+        border-radius: 8px !important;
+        padding: 8px !important;
+    }
+    input:focus, textarea:focus {
+        border: 1px solid #2563eb !important;
+        box-shadow: 0 0 0 2px #93c5fd !important;
+    }
+
+    /* ---------- SKILL TAGS ---------- */
+    .skill-tag {
+        padding: 8px 14px;
+        margin: 6px;
+        background: #ffffff;
+        border-radius: 12px;
+        border: 1px solid #e2e8f0;
+        display: inline-block;
+        font-size: 15px;
+        font-weight: 500;
+        color: #1f2937 !important;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+</style>
+""", unsafe_allow_html=True)
+
+
 st.set_page_config(page_title=PAGE_TITLE, page_icon=PAGE_ICON, layout="wide")
+
 
 RESUME_FILENAME = "Shubham_Resume25_11_2025.pdf"
 
@@ -268,21 +491,26 @@ skills_groups = {
 }
 
 # Display skills as stylish tags
+# for group, items in skills_groups.items():
+#     st.markdown(f"### {group}")
+#     st.markdown(
+#         "".join(
+#             [
+#                 f"<span style='padding:6px 12px; margin:4px; background:#ddd; "
+#                 f"border-radius:10px; display:inline-block;'>{item}</span>"
+#                 for item in items
+#             ]
+#         ),
+#         unsafe_allow_html=True
+#     )
+#     st.write("")
+    
+# st.write("---")
 for group, items in skills_groups.items():
     st.markdown(f"### {group}")
-    st.markdown(
-        "".join(
-            [
-                f"<span style='padding:6px 12px; margin:4px; background:#ddd; "
-                f"border-radius:10px; display:inline-block;'>{item}</span>"
-                for item in items
-            ]
-        ),
-        unsafe_allow_html=True
-    )
+    tags = "".join([f"<span class='skill-tag'>{item}</span>" for item in items])
+    st.markdown(tags, unsafe_allow_html=True)
     st.write("")
-    
-st.write("---")
 
 # Certificates
 st.markdown("<h2 id='certificates'>Certificates</h2>", unsafe_allow_html=True)
